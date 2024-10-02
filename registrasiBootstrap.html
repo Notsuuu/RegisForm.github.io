@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrasi</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        img {
+            display: block;
+            max-width: 200px;
+            margin-top: 10px;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #7100a5;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #00badb;
+        }
+
+        .gender-group {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .gender-group input {
+            margin-right: 3px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="my-4">Registrasi (Bootstrap)</h2>
+        <form action="submit_registration.php" method="post" enctype="multipart/form-data">
+            <!-- Nama -->
+            <div class="form-group">
+                <label for="name">Nama Lengkap:</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+
+            <!-- Username -->
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" class="form-control" id="username" name="username" required>
+            </div>
+
+            <!-- Password -->
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+                <div class="form-check mt-2">
+                    <input class="form-check-input" type="checkbox" id="showPassword" onclick="togglePassword()">
+                    <label class="form-check-label" for="showPassword">Tampilkan Password</label>
+                </div>
+            </div>
+
+            <!-- Jenis Kelamin -->
+            <div class="form-group">
+                <label>Jenis Kelamin:</label>
+                <div class="gender-group">
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" id="male" name="gender" value="Laki-laki" required>
+                        <label class="form-check-label" for="male">Laki-laki</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" id="female" name="gender" value="Perempuan">
+                        <label class="form-check-label" for="female">Perempuan</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" id="other" name="gender" value="Lainnya">
+                        <label class="form-check-label" for="other">Lainnya</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tanggal Lahir -->
+            <div class="form-group">
+                <label for="birthdate">Tanggal Lahir:</label>
+                <input type="date" class="form-control" id="birthdate" name="birthdate" required>
+            </div>
+
+            <!-- Kota Asal -->
+            <div class="form-group">
+                <label for="city">Kota Asal:</label>
+                <input type="text" class="form-control" id="city" name="city" required>
+            </div>
+
+            <!-- Provinsi -->
+            <div class="form-group">
+                <label for="province">Provinsi:</label>
+                <input type="text" class="form-control" id="province" name="province" required>
+            </div>
+
+            <!-- Negara Asal -->
+            <div class="form-group">
+                <label for="country">Negara Asal:</label>
+                <input type="text" class="form-control" id="country" name="country" required>
+            </div>
+
+            <!-- Foto Profil -->
+            <div class="form-group">
+                <label for="profilePic">Foto Profil:</label>
+                <input type="file" class="form-control" id="profilePic" name="profilePic" accept="image/*" onchange="previewImage(event)">
+                <img id="preview" src="#" alt="Preview Gambar" style="display:none;">
+            </div>
+
+            <!-- Tombol Daftar -->
+            <button type="submit" class="btn btn-primary">Daftar</button>
+            <button type="button" class="btn btn-secondary" onclick="window.location.href='Login Page.html'">Kembali</button>
+        </form>
+    </div>
+
+    <script>
+        // Fungsi untuk toggle password visibility
+        function togglePassword() {
+            var passwordField = document.getElementById("password");
+            var showPasswordCheckbox = document.getElementById("showPassword");
+            if (showPasswordCheckbox.checked) {
+                passwordField.type = "text";
+            } else {
+                passwordField.type = "password";
+            }
+        }
+
+        // Fungsi untuk preview gambar yang diupload
+        function previewImage(event) {
+            var preview = document.getElementById('preview');
+            var file = event.target.files[0];
+            var reader = new FileReader();
+
+            reader.onload = function() {
+                preview.src = reader.result;
+                preview.style.display = 'block';
+            }
+
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
+</body>
+</html>

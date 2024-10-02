@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrasi</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="date"],
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        input[type="file"] {
+            margin-bottom: 10px;
+        }
+
+        img {
+            display: block;
+            max-width: 200px;
+            margin-top: 10px;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #7100a5;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #00badb;
+        }
+
+        .gender-group {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .gender-group input {
+            margin-right: 3px;
+        }
+
+        .form-group-gender {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .gender-options {
+            display: flex;
+            gap: 15px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Registrasi (Non Bootstrap)</h2>
+    <form action="submit_registration.php" method="post" enctype="multipart/form-data">
+        
+        <div class="form-group">
+            <label for="name">Nama Lengkap:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+
+        
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+
+        
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <input type="checkbox" id="showPassword" onclick="togglePassword()"> Tampilkan Password
+        </div>
+
+        <div class="form-group"></div>
+            <label>Jenis Kelamin:</label>
+            <div class="gender-group">
+                <input type="radio" id="male" name="gender" value="Laki-laki" required>
+                <label for="male">Laki-laki</label>
+
+                <input type="radio" id="female" name="gender" value="Perempuan">
+                <label for="female">Perempuan</label>
+
+                <input type="radio" id="other" name="gender" value="Lainnya">
+                <label for="other">Lainnya</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="birthdate">Tanggal Lahir:</label>
+            <input type="date" id="birthdate" name="birthdate" required>
+        </div>
+
+        <div class="form-group">
+            <label for="city">Kota Asal:</label>
+            <input type="text" id="city" name="city" required>
+        </div>
+
+        <div class="form-group">
+            <label for="province">Provinsi:</label>
+            <input type="text" id="province" name="province" required>
+        </div>
+
+        <div class="form-group">
+            <label for="country">Negara Asal:</label>
+            <input type="text" id="country" name="country" required>
+        </div>
+
+        <div class="form-group">
+            <label for="profilePic">Foto Profil:</label>
+            <input type="file" id="profilePic" name="profilePic" accept="image/*" onchange="previewImage(event)">
+            <img id="preview" src="#" alt="Preview Gambar" style="display:none;">
+        </div>
+
+        <button type="submit">Daftar</button>
+        <button onclick="window.location.href='Login Page.html'">Kembali</button>
+    </form>
+
+    <script>
+        function togglePassword() {
+            var passwordField = document.getElementById("password");
+            var showPasswordCheckbox = document.getElementById("showPassword");
+            if (showPasswordCheckbox.checked) {
+                passwordField.type = "text";
+            } else {
+                passwordField.type = "password";
+            }
+        }
+
+        function previewImage(event) {
+            var preview = document.getElementById('preview');
+            var file = event.target.files[0];
+            var reader = new FileReader();
+
+            reader.onload = function() {
+                preview.src = reader.result;
+                preview.style.display = 'block';
+            }
+
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
+</body>
+</html>
